@@ -1,4 +1,4 @@
-OSGI Bundles for Sphinx4
-=======================
+OSGI Bundles for external dependencies
+======================================
 
-This modules provide OSGI Bundles for [Sphinx4](http://cmusphinx.sourceforge.net/)
+This modules provide OSGI Bundles for external dependencies.

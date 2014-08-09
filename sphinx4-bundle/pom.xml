@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+      <groupId>org.apache.stanbol</groupId>
+      <artifactId>stanbol-ext-parent</artifactId>
+      <version>1.0.0-SNAPSHOT</version>
+      <relativePath>..</relativePath>
+    </parent>
+    
+    <groupId>org.apache.stanbol</groupId>
+    <artifactId>sphinx4-bundle</artifactId>
+    <!-- use the version of the wrapped xuggle libs -->
+    <version>1.0-SNAPSHOT</version>
+    <packaging>bundle</packaging>
+
+    <name>OSGI Bundle for CMU-Sphinx</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sphinx4-version>1.0-SNAPSHOT</sphinx4-version>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>perfectus</id>
+            <name>Suman Saurabh</name>
+            <email>ss.sumansaurabh92@gmail.com</email>
+            <organization>The LNM Institute of Information Technology</organization>
+        </developer>
+    </developers>
+
+    <dependencies>
+        <dependency>
+            <groupId>edu.cmu.sphinx</groupId>
+            <artifactId>sphinx4-core</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.0</version>
+        </dependency>
+    </dependencies>
+    <dependencyManagement>
+        
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                  <instructions>
+                    <Export-Package>
+                        
+                    </Export-Package>
+                    <!-- used instead of Export-Package to preserve the jars -->
+                    <_exportcontents>
+                        edu.cmu.sphinx.api;version=${sphinx4-version},
+                        edu.cmu.sphinx.result;version=${sphinx4-version},
+                        edu.cmu.sphinx.util;;version=${sphinx4-version}
+                    </_exportcontents>
+                    <!-- packages marked with resolution:=optional are not provided by
+                     this module. Users that need them will need to provide bundles
+                     exporting those frameworks -->
+                    <Import-Package>
+                      
+                      *
+                    </Import-Package>
+                    <!-- DynamicImport-Package>*</DynamicImport-Package -->
+                    <Embed-Dependency>
+                      sphinx4-core,
+                      commons-math3
+                    </Embed-Dependency>
+                    
+                    
+                  </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+</project>
