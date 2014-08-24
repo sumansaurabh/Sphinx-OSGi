@@ -15,7 +15,10 @@
     <name>Stanbol External Dependencies Reactor and Parent</name>
     <packaging>pom</packaging>
 
-    
+    <modules>
+      <module>sphinx4-bundle</module>
+    </modules>
+
     <build>
     <pluginManagement>
       <plugins>
